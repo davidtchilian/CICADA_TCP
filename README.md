@@ -1,7 +1,5 @@
 # CICADA_TCP
 
-# TCP Server
-
 This project is an implementation of a TCP server using Python. It allows for communication between a client and server using the Transmission Control Protocol (TCP) network protocol.
 
 ## Features
@@ -20,16 +18,21 @@ To run the TCP server, make sure you have the following installed:
 
 1. Clone the repository:
 
+```
 git clone https://github.com/davidtchilian/CICADA_TCP.git
-
+```
 
 2. Navigate to the project directory:
 
+```
 cd CICADA_TCP
+```
 
 3. Run the server:
 
+```
 python3 cicadatcp.py
+```
 
 4. The server will start listening for client connections on a specified port (default: 12345). Make sure the port is not blocked by a firewall or used by another process.
 
