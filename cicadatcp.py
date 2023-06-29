@@ -6,9 +6,7 @@ simple_quine = "quine='quine=%r;print (quine%%quine)';print (quine%quine)"
 def handle_command(c, client_socket):
     c = c.split(" ")
 
-    if c[0] == "goodbye":
-        client_socket.send("99 Goodbye\n".encode())
-        client_socket.close()
+
     if c[0] == "rand":
         if len(c) < 2 or not c[1].isdigit():
             client_socket.send("02 Error : USAGE : RAND <number>\n".encode())
@@ -58,6 +56,10 @@ def handle_client(client_socket):
     while True:
         try:
             command = client_socket.recv(1024).decode().strip().lower()
+            if command == "goodbye":
+                client_socket.send("99 Goodbye\n".encode())
+                client_socket.close()
+                break
             if command == "next":
                 client_socket.send("01 OK\n".encode())
                 with open('next.txt', 'w') as f:
@@ -97,9 +99,9 @@ def run_server():
     server_socket.listen(5)
 
     print(f"Server listening on {host}:{port}")
-
-    client_socket, addr = server_socket.accept()
-    handle_client(client_socket)
+    while True:
+        client_socket, addr = server_socket.accept()
+        handle_client(client_socket)
     server_socket.close()
 
 run_server()
